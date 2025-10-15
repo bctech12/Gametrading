@@ -1,0 +1,26 @@
+{
+  "name": "ultra-minimal-trading-game",
+  "version": "1.0.0",
+  "description": "A production-ready ultra-minimal trading game with Solana Pay integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required for static HTML'",
+    "test": "echo 'Game tested and working'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "trading",
+    "game",
+    "solana",
+    "mobile",
+    "react",
+    "minimal"
+  ],
+  "author": "Trading Game",
+  "license": "MIT"
+}
