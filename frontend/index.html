@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Ultra-Minimal Trading Game</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    </head>
+        <body>
+            <div id="app">
+                <div class="launch-screen" id="launchScreen">
+                    <button class="launch-button" id="launchButton">Launch Game</button>
+                </div>
+                
+                <div class="app-container hidden" id="gameApp">
+                   
+                    <div class="hud">
+                    <button class="hud-button left" id="withdrawBtn">🏦 Withdraw</button>
+                    <div class="stake-container">
+                    
+                    <div class="market-section">
+                    <span class="market-label">Market:</span>
+                    <svg class="crypto-logo" id="cryptoLogo" width="20" height="20" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.927 23.959l-9.823-5.797 9.817 13.839 9.828-13.839-9.828 5.797zM16.073 0l-9.819 16.297 9.819 5.807 9.823-5.801z" fill="#8A92B2"/>
+                    </svg>
+                    <select class="market-dropdown" id="marketDropdown">
+                        <option value="SOL">SOL/USDC</option>
+                        <option value="ETH" selected>ETH/USDC</option>
+                        <option value="BTC">BTC/USDC</option>
+                    </select>
+                </div>
+
+                <div class="trade-size-section">
+                    <span class="trade-label">Trade size:</span>
+                    <input 
+                        type="number" 
+                        class="stake-input" 
+                        id="stakeInput"
+                        value="5.00"
+                        min="5"
+                        step="0.1"
+                    >
+                    <span class="dollar-sign">$</span>
+
+                    <span class="trade-label">Time:</span>
+                    <select class="market-dropdown" id="timeframeDropdown">
+                        <option value="10s" selected>10 sec</option>
+                        <option value="30s">30 sec</option>
+                        <option value="1m">01 min</option>
+                        <option value="5m">05 min</option>
+                        <option value="10m">10 min</option>
+                        <option value="30m">30 min</option>
+                        <option value="1h">01 hour</option>
+                    </select>
+                </div>
+      
+                <button class="hud-button right" id="depositBtn">💰 Deposit</button>
+            </div>
+                    
+                    <div class="player-info" id="playerInfo">
+                                <div class="player-count-container">
+                    <span class="player-icon">👥</span>
+                    <span id="playerCount">12 players online</span>
+                </div>
+                        <span class="balance-hud" id="balanceHud">Balance: 42.30 USDC</span>
+                    </div>
+ 
+                    <!-- Player Leaderboard -->
+                    <div class="leaderboard-box">
+                        <div class="leaderboard-header">👥 LIVE PLAYERS</div>
+                        <div class="leaderboard-content" id="leaderboardContent">
+                            <!-- Players will be added here dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="game-container">
+                        
+                    <!-- Price Scale - Left Side -->
+                <div class="price-scale">
+                    <div class="price-scale-inner" id="priceScaleInner">
+                        <!-- Ticks will be added dynamically -->
+                    </div>
+                </div>
+
+                <!-- Center Button -->
+                <button class="center-button" id="centerButton" title="Center Mid-line">⊙</button>
+                   
+                    <svg
+                        class="game-canvas"
+                        id="gameCanvas"
+                        viewBox="0 0 375 400"
+                        width="375"
+                        height="400"
+                        >               
+                <!-- Main area background (dark) -->
+                <rect x="0" y="0" width="315" height="400" fill="#0D1117" />
+
+                <!-- Finish zone area (grey) -->
+                <rect x="315" y="0" width="60" height="400" fill="#2A2A2A" />
+
+                <!-- Dynamic green bar -->
+                <rect id="greenBar" x="0" y="170" width="315" height="30" fill="#96FF2C" opacity="0.7" />
+
+                <!-- Dynamic red bar -->
+                <rect id="redBar" x="0" y="202" width="315" height="30" fill="#f948aa" opacity="0.7" />
+
+                <!-- White mid-line -->
+                <line id="midLine" x1="0" y1="200" x2="375" y2="200" stroke="white" stroke-width="2" />
+
+                <!-- Finish line -->
+                <g id="checkeredLine">
+                    <rect x="313" y="0" width="5" height="20" fill="black"/>
+                    <rect x="313" y="20" width="5" height="20" fill="white"/>
+                    <rect x="313" y="40" width="5" height="20" fill="black"/>
+                    <rect x="313" y="60" width="5" height="20" fill="white"/>
+                    <rect x="313" y="80" width="5" height="20" fill="black"/>
+                    <rect x="313" y="100" width="5" height="20" fill="white"/>
+                    <rect x="313" y="120" width="5" height="20" fill="black"/>
+                    <rect x="313" y="140" width="5" height="20" fill="white"/>
+                    <rect x="313" y="160" width="5" height="20" fill="black"/>
+                    <rect x="313" y="180" width="5" height="20" fill="white"/>
+                    <rect x="313" y="200" width="5" height="20" fill="black"/>
+                    <rect x="313" y="220" width="5" height="20" fill="white"/>
+                    <rect x="313" y="240" width="5" height="20" fill="black"/>
+                    <rect x="313" y="260" width="5" height="20" fill="white"/>
+                    <rect x="313" y="280" width="5" height="20" fill="black"/>
+                    <rect x="313" y="300" width="5" height="20" fill="white"/>
+                    <rect x="313" y="320" width="5" height="20" fill="black"/>
+                    <rect x="313" y="340" width="5" height="20" fill="white"/>
+                    <rect x="313" y="360" width="5" height="20" fill="black"/>
+                    <rect x="313" y="380" width="5" height="20" fill="white"/>
+                </g>
+
+                <!-- TOP horizontal shadow -->
+                <line id="topShadow" x1="0" y1="170" x2="375" y2="170" stroke="#000" stroke-width="1" opacity="0.25" filter="url(#softBlur)" />
+
+                <!-- LEFT vertical shadow -->
+                <line id="leftShadow" x1="5" y1="0" x2="5" y2="400" stroke="#000" stroke-width="3" opacity="0.18" filter="url(#softBlur)" />
+
+                <!-- Soft-blur filter -->
+                <defs>
+                    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+                    </filter>
+                </defs>
+                </svg>
+                
+                <!-- Price tags that ride the mid-line -->
+                <div class="price-tag left" id="leftPriceTag">$2,500.00</div>
+                <div class="price-tag right" id="rightPriceTag">$2,500.00</div>
+            </div>
+            
+        </div>
+        
+        <!-- Deposit Modal -->
+        <div class="modal hidden" id="depositModal">
+            <div class="modal-content">
+                <div class="modal-header">Deposit USDC</div>
+                <div class="qr-container">
+                    <div class="qr-placeholder">
+                        QR Code<br><br>
+                        solana:4zMMC9...<br><br>
+                        Amount: <span id="depositAmount">2.50</span> USDC
+                    </div>
+                </div>
+                <button class="close-modal" id="closeDeposit">Close</button>
+            </div>
+        </div>
+        
+        <!-- Withdraw Modal -->
+        <div class="modal hidden" id="withdrawModal">
+            <div class="modal-content">
+                <div class="modal-header">Withdraw USDC</div>
+                <div class="qr-container">
+                    <div class="qr-placeholder">
+                        QR Code<br><br>
+                        Withdraw <span id="withdrawAmount">2.50</span> USDC<br><br>
+                        Scan with Phantom
+                    </div>
+                </div>
+                <button class="close-modal" id="closeWithdraw">Close</button>
+            </div>
+        </div>
+        
+        <!-- Toast container -->
+        <div id="toastContainer"></div>
+    </div>
+<script src="./scripts/app.js"></script>
+
+
+</body>
+</html>
