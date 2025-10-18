@@ -1,4 +1,4 @@
- * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -726,6 +726,9 @@ input {
 .leaderboard-content::-webkit-scrollbar-thumb:hover {
   background: #484f58;
 }
+.fab-menu {
+  display: none; /* hide floating menu on desktop */
+}
 
 /* =========  MOBILE  ≤ 768 px  ========= */
 
@@ -751,24 +754,83 @@ input {
     backdrop-filter: blur(10px) !important;
     flex-wrap: nowrap !important;
     flex-direction: row !important;
-    justify-content: flex-start !important;
+    justify-content: first baseline !important;
+  }
+  /* ===== Floating Action Button ===== */
+  .fab-menu {
+    position: fixed;
+    top: 06px;
+    right: 3px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  /* main round button */
+  .fab-main {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(150, 255, 44, 0.9);
+    border: none;
+    color: #0d1117;
+    font-size: 25px;
+    padding-left: 2px;
+    padding-bottom: 3px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .fab-main:hover {
+    transform: rotate(45deg) scale(1.05);
+  }
+
+  /* hidden options */
+  .fab-options {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .fab-option {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .fab-option:hover {
+    background: rgba(150, 255, 44, 0.9);
+    color: #0d1117;
   }
 
   .hud-button {
-    position: static !important;
-    font-size: 9px !important;
-    padding: 6px 8px !important;
-    border-radius: 6px !important;
-    min-width: 60px !important;
-    flex-shrink: 0 !important;
+    display: none;
   }
-
+  .modal {
+    position: fixed !important;
+    z-index: 9999 !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   /* ==== 2. Market + Trade Size ==== */
   .stake-container {
     flex: 1 !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
+    padding-left: 5px;
     justify-content: flex-start !important;
     gap: 4px !important;
     flex-wrap: nowrap !important;
@@ -792,7 +854,7 @@ input {
   .crypto-logo {
     width: 16px !important;
     height: 16px !important;
-    flex-shrink: 1 !important;
+    flex-shrink: 2 !important;
   }
 
   .market-dropdown {
@@ -802,7 +864,7 @@ input {
     border-radius: 6px !important;
     padding: 5px 8px !important;
     font-size: 9px !important;
-    min-width: 70px !important;
+    min-width: 60px !important;
   }
   /* === Make both dropdowns (Market + Time) look identical === */
   #marketDropdown,
@@ -822,7 +884,7 @@ input {
     font-weight: 600 !important;
     cursor: pointer !important;
     outline: none !important;
-    min-width: 80px !important;
+    min-width: 70px !important;
     text-align-last: center !important;
     transition: border-color 0.2s !important;
   }
@@ -835,7 +897,7 @@ input {
     background: #161b22 !important;
     border: 1px solid #30363d !important;
     color: white !important;
-    width: 60px !important;
+    width: 50px !important;
     font-size: 9px !important;
     text-align: center !important;
     padding: 5px 6px !important;
@@ -867,7 +929,7 @@ input {
   /* ==== 4. Game Area ==== */
   .game-container {
     position: fixed !important;
-    top: 60px !important;
+    top: 130px !important;
     left: 90px !important;
     width: 80vw !important;
     transform: none !important;
@@ -875,7 +937,7 @@ input {
     z-index: 5 !important;
     display: flex;
     align-items: center;
-    height: 550px !important;
+    height: 370px !important;
   }
 
   .game-canvas {
@@ -887,7 +949,7 @@ input {
   /* ==== 5. Price Scale (Left Edge) ==== */
   .price-scale {
     left: -61px !important;
-    top: 117px !important;
+    top: 26px !important;
     width: 60px !important;
     height: 317px !important;
     margin: 0 !important;
@@ -930,23 +992,24 @@ input {
     border-radius: 3px;
     border: 1px solid #30363d;
     z-index: 6;
+    transform: translateY(-50%);
     pointer-events: none;
     transition: color 0.3s ease;
   }
 
   .price-tag.left {
-    left: 5px;
+    left: 2px;
   }
 
   .price-tag.right {
-    right: 5px;
+    right: 33px;
   }
 
   /* ==== 7. Center Button ==== */
   .center-button {
     position: absolute !important;
-    top: 410px;
-    left: -35px !important;
+    top: 350px;
+    left: -45px !important;
     bottom: 0px !important;
     width: 32px !important;
     height: 32px !important;
@@ -997,20 +1060,8 @@ input {
   }
 
   .bet-box {
-    width: 60px !important;
-    height: 28px !important;
+    width: 55px !important;
+    height: 50px !important;
     font-size: 10px !important;
-  }
-
-  /* ==== 10. Prevent Scrolling ==== */
-  body,
-  html,
-  .app-container {
-    overflow: hidden !important;
-  }
-
-  /* Hide floating balance badge */
-  .balance-badge {
-    display: none !important;
   }
 }

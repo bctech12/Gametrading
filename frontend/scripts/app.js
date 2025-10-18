@@ -290,7 +290,9 @@ class TradingGame {
 
       if (!box.settled) {
         // ✅ Dynamic movement based on timeframe
-        const totalDistance = 250;
+        const isMobile = window.innerWidth <= 768;
+        const canvasWidth = isMobile ? 315 * 0.7 : 315; // Mobile pe 84% width
+        const totalDistance = canvasWidth * 0.79;
         const timeframeInSeconds = TIMEFRAMES[box.timeframe] || 60;
 
         const pixelsPerSecond = totalDistance / timeframeInSeconds;
@@ -332,7 +334,7 @@ class TradingGame {
 
         // Check if box reached finish line or time expired
         if (
-          box.x >= 250 ||
+          box.x >= totalDistance ||
           Date.now() >=
             (box.endTime || box.startTime + timeframeInSeconds * 1000)
         ) {
@@ -806,6 +808,28 @@ class TradingGame {
     }, 100);
   }
 }
+// ===== Floating FAB Menu Logic =====
+document.addEventListener("DOMContentLoaded", () => {
+  const fabMain = document.getElementById("fabMain");
+  const fabOptions = document.getElementById("fabOptions");
+  const fabDeposit = document.getElementById("fabDeposit");
+  const fabWithdraw = document.getElementById("fabWithdraw");
+
+  fabMain.addEventListener("click", () => {
+    const visible = fabOptions.style.display === "flex";
+    fabOptions.style.display = visible ? "none" : "flex";
+  });
+
+  fabDeposit.addEventListener("click", () => {
+    fabOptions.style.display = "none";
+    document.getElementById("depositModal").classList.remove("hidden");
+  });
+
+  fabWithdraw.addEventListener("click", () => {
+    fabOptions.style.display = "none";
+    document.getElementById("withdrawModal").classList.remove("hidden");
+  });
+});
 
 // Initialize game when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {

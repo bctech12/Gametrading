@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultra-Minimal Trading Game</title>
     <link rel="stylesheet" href="./styles/style.css" />
     </head>
@@ -72,6 +72,14 @@
                             <!-- Players will be added here dynamically -->
                         </div>
                     </div>
+                    <!-- Floating Action Button (FAB) -->
+            <div class="fab-menu">
+            <button class="fab-main" id="fabMain">＋</button>
+            <div class="fab-options" id="fabOptions">
+                <button class="fab-option" id="fabDeposit">💰 Deposit</button>
+                <button class="fab-option" id="fabWithdraw">🏦 Withdraw</button>
+            </div>
+            </div>
 
                     <div class="game-container">
                         
@@ -182,9 +190,10 @@
             </div>
         </div>
         
-        <!-- Toast container -->
-        <div id="toastContainer"></div>
-    </div>
+                <!-- Toast container -->
+                <div id="toastContainer"></div>
+            </div>
+                
 <script src="./scripts/app.js"></script>
 
 
