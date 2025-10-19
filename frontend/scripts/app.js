@@ -413,8 +413,9 @@ class TradingGame {
     const ticksEachSide = Math.ceil(this.scaleHeight / stepPx) + 2;
     const centerY = this.scaleHeight / 2;
 
+    const yOffset = this.tickPx / 2;
     for (let i = -ticksEachSide; i <= ticksEachSide; i++) {
-      const y = centerY - i * stepPx;
+      const y = centerY - i * stepPx + yOffset;
       const price = this.scaleCenterPrice + i * stepPrice;
 
       const line = document.createElement("div");

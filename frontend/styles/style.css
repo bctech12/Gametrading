@@ -798,6 +798,7 @@ input {
 
   .fab-option {
     background: #161b22;
+    width: 115px;
     border: 1px solid #30363d;
     color: white;
     padding: 10px 16px;
